@@ -187,6 +187,15 @@ DEFINE_int32(min_write_buffer_number_to_merge,
              " writing less data to storage if there are duplicate records "
              " in each of these individual write buffers.");
 
+DEFINE_int32(max_mem_compaction_level,
+             rocksdb::Options().max_mem_compaction_level,
+             "Maximum level to which a new compacted memtable is pushed if it"
+             "does not create overlap. We try to push to level 2 to avoid the" 
+             "relatively expensive level 0=>1 compactions and to avoid some"
+             "expensive manifest file operations. We do not push all the way"
+             "to the largest level since that can generate a lot of wasted disk"
+             "space if the same key space is being repeatedly overwritten.");
+
 DEFINE_int32(max_background_compactions,
              rocksdb::Options().max_background_compactions,
              "The maximum number of concurrent background compactions"
@@ -1562,6 +1571,7 @@ class Benchmark {
     options.max_write_buffer_number = FLAGS_max_write_buffer_number;
     options.min_write_buffer_number_to_merge =
       FLAGS_min_write_buffer_number_to_merge;
+    options.max_mem_compaction_level = FLAGS_max_mem_compaction_level;
     options.max_background_compactions = FLAGS_max_background_compactions;
     options.max_background_flushes = FLAGS_max_background_flushes;
     options.compaction_style = FLAGS_compaction_style_e;
