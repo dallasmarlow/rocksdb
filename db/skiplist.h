@@ -50,7 +50,7 @@ class SkipList {
   // and will allocate memory using "*arena".  Objects allocated in the arena
   // must remain allocated for the lifetime of the skiplist object.
   explicit SkipList(Comparator cmp, Arena* arena,
-                    int32_t max_height = 12, int32_t branching_factor = 4);
+                    int32_t max_height = 18, int32_t branching_factor = 4);
 
   // Insert key into the list.
   // REQUIRES: nothing that compares equal to key is currently in the list.
