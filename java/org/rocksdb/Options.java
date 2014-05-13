@@ -2308,6 +2308,35 @@ public class Options extends RocksObject {
       long handle, int minPartialMergeOperands);
 
   /**
+   * The type of compaction style to use.
+   *
+   * Default: 0x0 (level)
+   *
+   * @return
+   */
+  public byte compactionStyle() {
+    return compactionStyle(nativeHandle_);
+  }
+  private native byte compactionStyle(long handle);
+
+  /**
+   * The type of compaction style to use.
+   *
+   * Default: 0x0 (level)
+   *
+   * @param compactionStyle
+   * @return the reference to the current option.
+   */
+  public Options setCompactionStyle(byte compactionStyle) {
+    setCompactionStyle(nativeHandle_, compactionStyle);
+    return this;
+  }
+  private native void setCompactionStyle(
+      long handle, byte compactionStyle);
+
+
+
+  /**
    * Release the memory allocated for the current instance
    * in the c++ side.
    */
