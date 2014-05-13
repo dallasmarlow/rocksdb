@@ -1649,6 +1649,30 @@ void Java_org_rocksdb_Options_setMinPartialMergeOperands(
           static_cast<int32_t>(jmin_partial_merge_operands);
 }
 
+/*
+ * Class:     org_rocksdb_Options
+ * Method:    compactionStyle
+ * Signature: (J)B
+ */
+jbyte Java_org_rocksdb_Options_compactionStyle(
+    JNIEnv* env, jobject jobj, jlong jhandle) {
+  return reinterpret_cast<rocksdb::Options*>(
+      jhandle)->compaction_style;
+}
+
+/*
+ * Class:     org_rocksdb_Options
+ * Method:    setCompactionStyle
+ * Signature: (JB)V
+ */
+void Java_org_rocksdb_Options_setCompactionStyle(
+    JNIEnv* env, jobject jobj, jlong jhandle,
+    jbyte jcompaction_style) {
+  reinterpret_cast<rocksdb::Options*>(
+      jhandle)->compaction_style =
+          static_cast<char>(jcompaction_style);
+}
+
 //////////////////////////////////////////////////////////////////////////////
 // WriteOptions
 
