@@ -1670,7 +1670,7 @@ void Java_org_rocksdb_Options_setCompactionStyle(
     jbyte jcompaction_style) {
   reinterpret_cast<rocksdb::Options*>(
       jhandle)->compaction_style =
-          static_cast<char>(jcompaction_style);
+          static_cast<rocksdb::CompactionStyle>(jcompaction_style);
 }
 
 //////////////////////////////////////////////////////////////////////////////
